@@ -1,0 +1,54 @@
+{
+  "name": "notebooklm-mac",
+  "version": "0.1.0",
+  "description": "Native macOS wrapper for Google NotebookLM",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development nodemon --exec electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac"
+  },
+  "keywords": [
+    "notebooklm",
+    "electron",
+    "macos",
+    "wrapper",
+    "google"
+  ],
+  "author": "",
+  "license": "Copyright (c) 2025 Pattana",
+  "type": "commonjs",
+  "build": {
+    "appId": "com.notebooklm.mac",
+    "productName": "NotebookLM",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "darkModeSupport": true
+    },
+    "dmg": {
+      "title": "NotebookLM Installer"
+    }
+  },
+  "dependencies": {
+    "electron": "^39.2.1",
+    "electron-builder": "^26.0.12",
+    "electron-window-state": "^5.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

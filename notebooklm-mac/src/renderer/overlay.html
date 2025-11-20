@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overlay</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Settings icon */
+    #settings-icon {
+      position: fixed;
+      top: 36px;
+      left: 16px;
+      width: 44px;
+      height: 44px;
+      background: rgba(0, 0, 0, 1.0);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: all 0.2s ease;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    #settings-icon:hover {
+      background: rgba(0, 0, 0, 1.0);
+      transform: scale(1.1);
+    }
+
+    #settings-icon:active {
+      transform: scale(1.05);
+    }
+
+    /* Version text (bottom center) */
+    #version-text {
+      position: fixed;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 1px 1px;
+      background: rgba(238, 239, 249, 1.0);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 8px;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 11px;
+      font-weight: 400;
+      pointer-events: none;
+    }
+
+    /* Settings icon SVG */
+    .icon-svg {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Settings Icon -->
+  <div id="settings-icon" title="Settings">
+    <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="3"></circle>
+      <path d="M12 1v6m0 6v6M6 6l4.24 4.24m3.52 3.52L18 18M6 18l4.24-4.24m3.52-3.52L18 6"></path>
+    </svg>
+  </div>
+
+  <!-- Version Text -->
+  <div id="version-text">Pattana RAG Demo Release Candidate v0.4.7 - Review output results carefully</div>
+
+  <script>
+    const settingsIcon = document.getElementById('settings-icon');
+
+    // Settings icon click handler
+    settingsIcon.addEventListener('click', () => {
+      if (window.electronAPI?.openSettings) {
+        window.electronAPI.openSettings();
+      }
+    });
+
+    // Toggle mouse passthrough when hovering over interactive elements
+    settingsIcon.addEventListener('mouseenter', () => {
+      if (window.electronAPI?.setOverlayMousePassthrough) {
+        window.electronAPI.setOverlayMousePassthrough(false);
+      }
+    });
+
+    settingsIcon.addEventListener('mouseleave', () => {
+      if (window.electronAPI?.setOverlayMousePassthrough) {
+        window.electronAPI.setOverlayMousePassthrough(true);
+      }
+    });
+
+    console.log('Overlay loaded');
+  </script>
+</body>
+</html>
