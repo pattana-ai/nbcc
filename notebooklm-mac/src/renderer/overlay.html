@@ -48,6 +48,26 @@
       transform: scale(1.05);
     }
 
+    /* Top overlay (right half, 40px from top) */
+    #top-overlay {
+      position: fixed;
+      top: 45px;
+      left: 50%;
+      right: 0;
+      height: 30px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      background: rgba(238, 239, 249, 1.0);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 0;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 11px;
+      font-weight: 400;
+      pointer-events: none;
+    }
+
     /* Version text (bottom center) */
     #version-text {
       position: fixed;
@@ -80,6 +100,9 @@
       <path d="M12 1v6m0 6v6M6 6l4.24 4.24m3.52 3.52L18 18M6 18l4.24-4.24m3.52-3.52L18 6"></path>
     </svg>
   </div>
+
+  <!-- Top Overlay -->
+  <div id="top-overlay">&nbsp;</div>
 
   <!-- Version Text -->
   <div id="version-text">Pattana RAG Demo Release Candidate v0.4.7 - Review output results carefully</div>

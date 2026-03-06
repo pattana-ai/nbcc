@@ -128,9 +128,9 @@ function createWindow() {
   buildMenu(mainWindow, webView);
 
   // Open DevTools in development (optional)
-  if (process.env.NODE_ENV === 'development') {
-    webView.webContents.openDevTools();
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   webView.webContents.openDevTools();
+  // }
 
   // Handle webView navigation
   webView.webContents.on('will-navigate', (event, url) => {
